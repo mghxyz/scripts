@@ -1,0 +1,47 @@
+eval $(cat .env | sed 's/^/export /')
+
+
+source development.env
+
+
+
+###
+set -a # export all variables created next
+source $1
+set +a # stop exporting
+
+# test that it works
+echo "Ficheros: $MINIENTREGA_FICHEROS"
+###
+
+
+export $(xargs < .env)
+
+
+
+set -a
+. ./env.txt
+set +a
+
+
+eval "$(shdotenv)"
+
+
+
+
+
+I put this in ~/.bashrc.
+
+set -a
+. ./.env >/dev/null 2>&1
+set +a
+
+
+
+
+
+export $(cat .env | sed -e /^$/d -e /^#/d | xargs)
+
+
+env -S "$(cat .env)" command
+env -S "$(cat .env)" sh -c 'echo "$KEY"'
